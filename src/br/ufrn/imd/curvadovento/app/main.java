@@ -61,7 +61,6 @@ public class main {
                     System.out.println("----------------------------------------");
                     System.out.println("Itens:");
                     for (Item item : novoPedido.getItens()) {
-                        // Formata o preço para ter sempre duas casas decimais
                         System.out.printf("- %s: R$ %.2f\n", item.getNome(), item.getPreco());
                     }
                     System.out.println("----------------------------------------");
@@ -73,7 +72,30 @@ public class main {
                     break;
 
                 case 2:
-                    System.out.println("Opção 2 selecionada: Remover Pedido");
+                     System.out.println("\n-=-=-= Remover Pedido -=-=-=");
+                    if (pedidos.isEmpty()) {
+                        System.out.println("Não há pedidos para remover.");
+                        break;
+                    }
+
+                    System.out.print("Digite o número do pedido que deseja remover: ");
+                    int numeroParaRemover = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Pedido pedidoParaRemover = null;
+                    for (Pedido pedido : pedidos) {
+                        if (pedido.getNumero() == numeroParaRemover) {
+                            pedidoParaRemover = pedido;
+                            break; // encontrou o pedido para de procurar
+                        }
+                    }
+
+                    if (pedidoParaRemover != null) {
+                        pedidos.remove(pedidoParaRemover); // remove o pedido
+                        System.out.println("Pedido N° " + numeroParaRemover + " removido com sucesso!");
+                    } else {
+                        System.out.println("Erro: Pedido N° " + numeroParaRemover + " não encontrado.");
+                    }
                     break;
 
                 case 3:
